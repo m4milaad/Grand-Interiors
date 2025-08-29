@@ -40,26 +40,25 @@ body {
 .navbar .logo {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Adjust spacing between circle/image and text */
+    gap: 1rem;
 }
 
 .logo-container {
-    width: 40px; /* Adjust the size of the circle */
+    width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: white; /* Set the background color of the circle */
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Ensures the image stays within the circle */
+    overflow: hidden;
 }
 
 .logo-container img {
     display: block;
-    max-width: 80%; /* Adjust image size within the circle */
+    max-width: 80%;
     max-height: 80%;
 }
-
 
 .logo a {
     color: white;
@@ -85,10 +84,10 @@ body {
     color: #b0b0b0;
 }
 
-/* --- Intro and Outro Sections --- */
+
+/* --- Hero Sections (Intro & Outro) --- */
 .intro,
 .outro {
-
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -98,23 +97,32 @@ body {
     padding: 2rem;
     position: relative;
     z-index: 1;
+    background-size: cover;
+    background-position: center;
 }
 
 .intro {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('https://images.unsplash.com/photo-1618220179			428-22790b461013?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3200');
-    background-size: cover;
-    background-position: center;
+    url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3200');
 }
+
 
 .outro {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('./images/photo-1618221195710-dd6b41faaea6.jpg');
-    background-size: cover;
-    background-position: center;
 }
 
-.intro h1,
+.intro .intro-content {
+    z-index: 2;
+}
+
+.intro-heading {
+    font-size: 3rem;
+    max-width: 900px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
 .outro h1 {
     font-size: 4rem;
 }
@@ -122,91 +130,58 @@ body {
 .intro p,
 .outro p {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
-/* --- Contact Section --- */
-.contact-section {
-    padding: 100px 2rem;
-    min-height: calc(100vh - 250px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #1a1a1a;
+/* --- Staggered Text Rotator --- */
+#word-rotator {
+    display: inline-flex; /* Use inline-flex to keep characters on one line */
+    vertical-align: bottom; /* Aligns with the baseline of the text */
+    text-align: left;
+    color: #E2C78A;
+    margin-left: 0.5rem;
+    white-space: nowrap; /* Prevents the word from breaking */
 }
 
-.contact-section h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); /* Spring-like ease */
+    animation-fill-mode: forwards;
 }
 
-.contact-section p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #ccc;
-    max-width: 600px;
+.char.in {
+    animation-name: char-in;
 }
 
-/* Contact details */
-.contact-details {
-    margin-bottom: 3rem;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+.char.out {
+    animation-name: char-out;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
+@keyframes char-in {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.contact-item a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
+@keyframes char-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-120%);
+    }
 }
 
-.contact-item a:hover {
-    color: #b0b0b0;
-}
-
-.contact-item svg {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-}
-
-/* Contact form */
-.contact-form {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background-color: #222;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-}
-
-.contact-form textarea {
-    resize: vertical;
-    min-height: 150px;
-}
 
 /* --- Stacking Carousel Section --- */
 .stacking-container {
@@ -231,7 +206,93 @@ body {
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
-/* --- Catalog Section --- */
+
+/* --- About Page Styles --- */
+.about-hero {
+    padding: 150px 2rem 50px;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content {
+    padding: 80px 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #b0b0b0;
+}
+
+
+/* --- Team Section --- */
+.team-section {
+    padding: 80px 2rem;
+    text-align: center;
+    background-color: #1a1a1a;
+}
+
+.team-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+}
+
+.team-member h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    color: #aaa;
+}
+
+.team-quote {
+    font-style: italic;
+    color: #888;
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+
+/* --- Catalog Page Styles --- */
 .catalog-section {
     padding: 100px 2rem;
     text-align: center;
@@ -293,90 +354,90 @@ body {
     margin-bottom: 0;
 }
 
-/* --- About Page Styles --- */
-.about-hero {
-    padding: 150px 2rem 50px;
+
+/* --- Contact Page Styles --- */
+.contact-section {
+    padding: 100px 2rem;
+    min-height: calc(100vh - 250px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background-color: #1a1a1a;
 }
 
-.about-hero h1 {
+.contact-section h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
 }
 
-.about-hero p {
+.contact-section p {
     font-size: 1.2rem;
+    margin-bottom: 2rem;
     color: #ccc;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 600px;
 }
 
-.about-content {
-    padding: 80px 2rem;
-    max-width: 900px;
-    margin: 0 auto;
+.contact-details {
+    margin-bottom: 3rem;
     display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.about-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.about-section p {
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.1rem;
-    line-height: 1.8;
+}
+
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
     color: #b0b0b0;
 }
 
-.team-section {
-    padding: 80px 2rem;
-    text-align: center;
-    background-color: #1a1a1a;
+.contact-item svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
 }
 
-.team-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
+.contact-form {
+    width: 100%;
+    max-width: 600px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1.5rem;
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
 }
 
-.team-member h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.team-member p {
-    color: #aaa;
-}
-
-.team-quote {
-    font-style: italic;
-    color: #888;
-    margin-top: 1rem;
-    padding: 0 1rem;
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
 }
 
 
-/* --- Call to Action Button --- */
+/* --- UI Components --- */
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
@@ -395,6 +456,7 @@ body {
     transform: scale(1.05);
     background-color: #f0f0f0;
 }
+
 
 /* --- Footer --- */
 footer {
@@ -423,7 +485,8 @@ footer {
     color: white;
 }
 
-/* --- Hamburger Menu --- */
+
+/* --- Hamburger Menu & Mobile Responsive --- */
 .hamburger {
     display: none; /* Hidden on desktop */
     position: relative;
@@ -443,7 +506,6 @@ footer {
     transition: all 0.3s ease-in-out;
 }
 
-/* --- Responsive Styles (Mobile) --- */
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem 1.5rem;
@@ -462,15 +524,11 @@ footer {
         background-color: rgba(17, 17, 17, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-
-        /* Layout for links */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 3rem;
-
-        /* Hide by default, off-screen to the right */
         transform: translateX(100%);
         transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     }
@@ -480,10 +538,9 @@ footer {
     }
 
     .nav-links a {
-        font-size: 2rem; /* Make links bigger for mobile */
+        font-size: 2rem;
     }
 
-    /* Animation for hamburger to 'X' */
     .hamburger.is-open .hamburger-bar:nth-child(1) {
         transform: rotate(45deg) translate(6px, 6px);
     }
@@ -496,8 +553,8 @@ footer {
         transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    /* Prevent body scroll when menu is open */
     body.no-scroll {
         overflow: hidden;
     }
 }
+
