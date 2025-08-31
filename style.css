@@ -103,13 +103,13 @@ body {
 
 .intro {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3200');
+        url('https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=3200');
 }
 
 
 .outro {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url('./images/photo-1618221195710-dd6b41faaea6.jpg');
+        url('./images/photo-1618221195710-dd6b41faaea6.jpg');
 }
 
 .intro .intro-content {
@@ -135,12 +135,15 @@ body {
 
 /* --- Staggered Text Rotator --- */
 #word-rotator {
-    display: inline-flex; /* Use inline-flex to keep characters on one line */
-    vertical-align: bottom; /* Aligns with the baseline of the text */
+    display: inline-flex;
+    /* Use inline-flex to keep characters on one line */
+    vertical-align: bottom;
+    /* Aligns with the baseline of the text */
     text-align: left;
     color: #E2C78A;
     margin-left: 0.5rem;
-    white-space: nowrap; /* Prevents the word from breaking */
+    white-space: nowrap;
+    /* Prevents the word from breaking */
 }
 
 .char {
@@ -148,7 +151,8 @@ body {
     opacity: 0;
     transform: translateY(100%);
     animation-duration: 0.6s;
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); /* Spring-like ease */
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Spring-like ease */
     animation-fill-mode: forwards;
 }
 
@@ -165,6 +169,7 @@ body {
         opacity: 0;
         transform: translateY(100%);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -176,6 +181,7 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-120%);
@@ -488,7 +494,8 @@ footer {
 
 /* --- Hamburger Menu & Mobile Responsive --- */
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none;
+    /* Hidden on desktop */
     position: relative;
     z-index: 1001;
     background: none;
@@ -512,7 +519,8 @@ footer {
     }
 
     .hamburger {
-        display: block; /* Show hamburger on mobile */
+        display: block;
+        /* Show hamburger on mobile */
     }
 
     .nav-links {
@@ -556,5 +564,16 @@ footer {
     body.no-scroll {
         overflow: hidden;
     }
-}
 
+    .intro-heading {
+        font-size: 2.5rem;
+    }
+
+    .intro-heading h2 {
+        font-size: 2rem;
+    }
+
+    .intro-heading p {
+        font-size: 1rem;
+    }
+}
